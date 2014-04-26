@@ -8,26 +8,44 @@
     font-size: xx-large;
     padding-left: 10px;
   }
+  .hitted{
+    color:red;
+  }
+  .highlighted{
+    color:blue;
+  }
 </style>
 
 <script type="text/javascript">
   var MAX_RANDOM_NUMBER=75;
+  var currentLabel;
 
   function randomNumber(){
     return Math.floor((Math.random()*MAX_RANDOM_NUMBER)+1);
   }
 
-  function higeLineValue(value){
+  function removeHittedClass(label){
+    if (label!=null) label.className = currentLabel.className.replace(/\b hitted\b/,'');
+  }
+
+  function addHittedClass(label){
+    label.className += " hitted";
+  }
+
+  function highlightValue(value){
+    removeHittedClass(currentLabel);
+    currentLabel = document.getElementById("num"+value);
+    addHittedClass(currentLabel);
     document.getElementById("currentNumber").innerHTML = value;
   }
 
   function displayTempValue(){
-    higeLineValue(randomNumber());
+    highlightValue(randomNumber());
   }
 
   function displayResult(){
     clearInterval(tmpValueTimer);
-    higeLineValue(randomNumber());
+    highlightValue(randomNumber());
   }
 
   var tmpValueTimer;
