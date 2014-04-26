@@ -2,7 +2,35 @@
 <head>
   <title>Bingo by Jack Sio@Macao</title>
 </head>
+<script type="text/javascript">
+  var MAX_RANDOM_NUMBER=75;
+
+  function randomNumber(){
+    return Math.floor((Math.random()*MAX_RANDOM_NUMBER)+1);
+  }
+
+  function higeLineValue(value){
+    document.getElementById("currentNumber").innerHTML = value;
+  }
+
+  function displayTempValue(){
+    higeLineValue(randomNumber());
+  }
+
+  function displayResult(){
+    clearInterval(tmpValueTimer);
+    higeLineValue(randomNumber());
+  }
+
+  var tmpValueTimer;
+  var showResultTimer;
+  function calculateResult(){
+    tmpValueTimer = setInterval(function(){displayTempValue()},40);
+    showResultTimer = setTimeout(function(){displayResult()}, 2000);
+  }
+
+</script>
 <body>
-  <label>Hello</label>
+  <label id="currentNumber" size="100" onclick="calculateResult()">Hello</label>
 </body>
 </html>
