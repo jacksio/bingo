@@ -4,8 +4,9 @@
 </head>
 
 <style type="text/css">
-  label{
+  .normal{
     font-size: xx-large;
+    padding-left: 10px;
   }
 </style>
 
@@ -36,8 +37,23 @@
     showResultTimer = setTimeout(function(){displayResult()}, 2000);
   }
 
+  function init(){
+    for (var i=1; i<=MAX_RANDOM_NUMBER; i++)
+    {
+      var newlabel = document.createElement("Label");
+      newlabel.id = "num"+i
+      newlabel.innerHTML = i;
+      newlabel.className = "normal";
+      document.getElementById("numbersDiv").appendChild(newlabel);
+      if (i % 10 == 0 ){
+        document.getElementById("numbersDiv").appendChild(document.createElement('br'));
+      }
+    }
+  }
+
 </script>
-<body>
+<body onload="init()">
+  <div id="numbersDiv"></div>
   <label id="currentNumber" size="100" onclick="calculateResult()">Hello</label>
 </body>
 </html>
