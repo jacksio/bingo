@@ -29,7 +29,11 @@
   }
 
   function addHittedClass(label){
-    label.className += " hitted";
+    if (label != null) label.className += " hitted";
+  }
+
+  function addhighlightedClass(label){
+    if (label != null) label.className += " highlighted";
   }
 
   function highlightValue(value){
@@ -51,8 +55,9 @@
   var tmpValueTimer;
   var showResultTimer;
   function calculateResult(){
+    addhighlightedClass(currentLabel);
     tmpValueTimer = setInterval(function(){displayTempValue()},40);
-    showResultTimer = setTimeout(function(){displayResult()}, 2000);
+    showResultTimer = setTimeout(function(){displayResult()}, 500);
   }
 
   function init(){
