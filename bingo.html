@@ -56,7 +56,6 @@
     removeHittedClass(currentLabel);
     currentLabel = document.getElementById("num"+value);
     addHittedClass(currentLabel);
-    document.getElementById("currentNumber").innerHTML = value;
   }
 
   function displayTempValue(){
@@ -98,6 +97,6 @@
 </script>
 <body onload="init()">
   <div id="numbersDiv"></div>
-  <label id="currentNumber" size="100" onclick="calculateResult()">Hello</label>
+  <button type="button" onclick="calculateResult()">Click Me!!!</button>
 </body>
 </html>
