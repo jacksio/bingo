@@ -27,6 +27,19 @@
     return Math.floor((Math.random()*MAX_RANDOM_NUMBER)+1);
   }
 
+  var numberUsed = new Array();
+  function randomNonRepeatableNumber(){
+    var num = randomNumber();
+    while(numberUsed[num] == true){
+      num = randomNumber();
+    }
+    return num;
+  }
+
+  function setNumberUsed(num){
+    numberUsed[num] = true;
+  }
+
   function removeHittedClass(label){
     if (label!=null) label.className = currentLabel.className.replace(/\b hitted\b/,'');
   }
@@ -47,12 +60,14 @@
   }
 
   function displayTempValue(){
-    highlightValue(randomNumber());
+    highlightValue(randomNonRepeatableNumber());
   }
 
   function displayResult(){
     clearInterval(tmpValueTimer);
-    highlightValue(randomNumber());
+    var result = randomNonRepeatableNumber();
+    setNumberUsed(result);
+    highlightValue(result);
   }
 
   var tmpValueTimer;
@@ -74,6 +89,9 @@
       if (i % 10 == 0 ){
         document.getElementById("numbersDiv").appendChild(document.createElement('br'));
       }
+
+      //init numberUsed
+      numberUsed[i] = false;
     }
   }
 
